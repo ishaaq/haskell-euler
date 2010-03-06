@@ -1,7 +1,6 @@
 import System(getArgs)
 import System.CPUTime
 import Text.Printf
-import Data.Char
 
 time f = do
     t0 <- getCPUTime
