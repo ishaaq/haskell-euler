@@ -1,9 +1,6 @@
-import System(getArgs)
-import Data.Char
 import Timer
 
 main = do
-    args <- getArgs
     time $ maximum $ concat $ map (quadprods) (rows ++ cols ++ ldiags ++ rdiags)
 
 mfilter :: ((Int, Int) -> Int) -> Int -> [Int]

@@ -1,9 +1,7 @@
-import System(getArgs)
 import Data.Char
 import Timer
 
 main = do
-    args <- getArgs
     time $ length $ foldl (\x y -> x ++ (filter (not.isSpace) (english y))) "" [1..1000]
 
 english 1000 = "one thousand"
