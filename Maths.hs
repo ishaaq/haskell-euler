@@ -1,5 +1,5 @@
 module Maths
-(primes, primesToN, factorial, primeFactors, numCombinations, combinations, numAllCombinations, allCombinations) where
+(primes, primesToN, factorial, primeFactors, properFactors, numCombinations, combinations, numAllCombinations, allCombinations) where
 
 import Array
 import Data.List (tails, nub)
@@ -34,6 +34,9 @@ primeFactors n
                   in  p : primeFactors d
     where pds = [(p, d) | p <- takeWhile (<= (sqrti n)) primes, let (d, r) = n `divMod` p, r == 0]
           sqrti = floor.sqrt.fromIntegral
+
+properFactors :: Int -> [Int]
+properFactors n = 1 : (filter (/= n) $ nub (map product ((allCombinations.primeFactors) n)))
 
 numCombinations n k = (factorial n) `div` ((factorial k) * (factorial (n - k)))
 
