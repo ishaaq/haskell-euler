@@ -1,9 +1,10 @@
 module Maths
-(primes, primesToN, factorial, comb) where
+(primes, primesToN, factorial, primeFactors, numCombinations, combinations, numAllCombinations, allCombinations) where
 
 import Array
+import Data.List (tails, nub)
 
-primes :: [Integer]
+primes :: (Integral a) => [a]
 primes = 2:3:primes'
   where
     1:p:candidates = [6*k+r | k <- [0..], r <- [1,5]]
@@ -12,7 +13,7 @@ primes = 2:3:primes'
                        $ takeWhile (\p -> p*p <= n) primes'
     divides n p    = n `mod` p == 0
 
-primesToN :: Integer -> [Integer]
+primesToN ::(Integral a, Enum a, Ix a) => a -> [a]
 primesToN n = 2: [i | i<-[3,5..n], ar!i]
    where
     ar = f 5 $ accumArray (\a b->False) True (3,n) 
@@ -26,4 +27,20 @@ primesToN n = 2: [i | i<-[3,5..n], ar!i]
 facts = 0:1:(zipWith (*) (tail facts) [2..])
 factorial = (facts !!)
 
-comb n k = (factorial n) `div` ((factorial k) * (factorial (n - k)))
+primeFactors :: (Integral a) => a -> [a]
+primeFactors n
+    | pds == [] = [n]
+    | otherwise = let (p, d) = head pds
+                  in  p : primeFactors d
+    where pds = [(p, d) | p <- takeWhile (<= (sqrti n)) primes, let (d, r) = n `divMod` p, r == 0]
+          sqrti = floor.sqrt.fromIntegral
+
+numCombinations n k = (factorial n) `div` ((factorial k) * (factorial (n - k)))
+
+combinations 0 _  = [ [] ]
+combinations n xs = [ y:ys | y:xs' <- tails xs
+                           , ys <- combinations (n-1) xs']
+
+numAllCombinations n = 2^n - 1
+allCombinations :: [a] -> [[a]]
+allCombinations xs = [x | k <- [1..(length xs)], x <- combinations k xs]
