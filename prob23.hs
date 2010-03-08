@@ -1,5 +1,4 @@
 import Timer
-import System.IO
 import Maths
 import qualified Data.Set as S
 

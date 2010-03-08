@@ -1,8 +1,8 @@
 module Maths
-(primes, primesToN, factorial, primeFactors, properFactors, numCombinations, combinations, numAllCombinations, allCombinations) where
+(primes, primesToN, factorial, primeFactors, properFactors, numCombinations, combinations, numAllCombinations) where
 
 import Array
-import Data.List (tails, nub)
+import Data.List
 
 primes :: (Integral a) => [a]
 primes = 2:3:primes'
@@ -36,7 +36,8 @@ primeFactors n
           sqrti = floor.sqrt.fromIntegral
 
 properFactors :: Int -> [Int]
-properFactors n = 1 : (filter (/= n) $ nub (map product ((allCombinations.primeFactors) n)))
+properFactors 1 = [1]
+properFactors n = (filter (/= n) $ nub (map product ((subsequences.primeFactors) n)))
 
 numCombinations n k = (factorial n) `div` ((factorial k) * (factorial (n - k)))
 
@@ -45,5 +46,3 @@ combinations n xs = [ y:ys | y:xs' <- tails xs
                            , ys <- combinations (n-1) xs']
 
 numAllCombinations n = 2^n - 1
-allCombinations :: [a] -> [[a]]
-allCombinations xs = [x | k <- [1..(length xs)], x <- combinations k xs]
