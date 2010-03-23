@@ -1,5 +1,7 @@
 module Maths
-(primes, primesToN, factorial, primeFactors, properFactors, numCombinations, combinations, numAllCombinations) where
+(primes, primesToN, factorial, primeFactors,
+ properFactors, numCombinations, combinations,
+ numAllCombinations, primitivePythtriplets) where
 
 import Array
 import Data.List
@@ -46,3 +48,12 @@ combinations n xs = [ y:ys | y:xs' <- tails xs
                            , ys <- combinations (n-1) xs']
 
 numAllCombinations n = 2^n - 1
+
+primitivePythtriplets l = [(a,b,c) | n <- [1..limit],
+                        m <- [n+1..limit],
+                        let msq = m^2, let nsq = n^2,
+                        let a = msq - nsq, 
+                        let b = 2*m*n, 
+                        let c = msq + nsq,
+                        a+b+c==l]
+    where limit = floor . sqrt . fromIntegral $ l

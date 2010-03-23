@@ -1,7 +1,9 @@
 module Utils
-(strToDigits, sumDigits, toDigits, toNumber) where
+(strToDigits, sumDigits, toDigits, toNumber, maxWithIndex) where
 
 import Data.Char
+import Data.List
+import Data.Ord
 
 sumDigits n = foldl (\x y -> x + (digitToInt y)) (0) (show n)
 
@@ -18,3 +20,5 @@ toNumber xs = toNumber' 0 xs
 
 toNumber' acc [] = acc
 toNumber' acc (x:xs) = toNumber' (acc + (10^(length xs) * x)) xs
+
+maxWithIndex xs = maximumBy (comparing fst) $ zip xs [1..]
