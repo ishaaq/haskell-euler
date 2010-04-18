@@ -27,10 +27,10 @@ insrt n mp
           hasFive = multiDigits && 5 `elem` digits
 
 insrt' cycs mp = M.union mp (M.fromList circPairs)
-    where isCircular = (dropWhile isPrime cycs) == []
+    where isCircular = (dropWhile isPrime' cycs) == []
           circPairs = foldl' (\acc x -> (x, isCircular):acc) [] cycs
 
-isPrime n = S.member n pSet
+isPrime' n = S.member n pSet
 
 pSet = S.fromList $ primesToN 999999
 

@@ -1,5 +1,5 @@
 module Maths
-(primes, primesToN, factorial, primeFactors,
+(isPrime, primes, primesToN, factorial, primeFactors,
  properFactors, numCombinations, combinations,
  numAllCombinations, primitivePythtriplets) where
 
@@ -7,13 +7,14 @@ import Array
 import Data.List
 
 primes :: (Integral a) => [a]
-primes = 2:3:primes'
-  where
-    1:p:candidates = [6*k+r | k <- [0..], r <- [1,5]]
-    primes'        = p : filter isPrime candidates
-    isPrime n      = all (not . divides n)
-                       $ takeWhile (\p -> p*p <= n) primes'
-    divides n p    = n `mod` p == 0
+primes = 2 : filter isPrime [3,5..]
+
+isPrime a = isPrime' a primes
+isPrime' a (p:ps)
+    | a == 1         = False
+    | p*p > a        = True
+    | a `mod` p == 0 = False
+    | otherwise      = isPrime' a ps
 
 primesToN ::(Integral a, Enum a, Ix a) => a -> [a]
 primesToN n = 2: [i | i<-[3,5..n], ar!i]
