@@ -1,5 +1,5 @@
 module Utils
-(strToDigits, sumDigits, toDigits, toNumber, maxWithIndex) where
+(csvToWords, strToDigits, sumDigits, toDigits, toNumber, maxWithIndex, charNum) where
 
 import Data.Char
 import Data.List
@@ -22,3 +22,7 @@ toNumber' acc [] = acc
 toNumber' acc (x:xs) = toNumber' (acc + (10^(length xs) * x)) xs
 
 maxWithIndex xs = maximumBy (comparing fst) $ zip xs [1..]
+
+charNum =  (flip (-) (ord 'A' - 1)) . (ord)
+
+csvToWords = words . (filter (not.isPunctuation)) . map (\x -> if x == ',' then ' ' else x)
