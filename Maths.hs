@@ -1,7 +1,7 @@
 module Maths
 (isPrime, primes, primesToN, factorial, primeFactors,
  properFactors, numCombinations, combinations,
- numAllCombinations, primitivePythtriplets) where
+ numAllCombinations, primitivePythtriplets, sqrti) where
 
 import Array
 import Data.List
@@ -36,7 +36,9 @@ primeFactors n
     | otherwise = let (p, d) = head pds
                   in  p : primeFactors d
     where pds = [(p, d) | p <- takeWhile (<= (sqrti n)) primes, let (d, r) = n `divMod` p, r == 0]
-          sqrti = floor.sqrt.fromIntegral
+
+sqrti :: (Integral a) => a -> a
+sqrti = floor.sqrt.fromIntegral
 
 properFactors :: Int -> [Int]
 properFactors 1 = [1]
