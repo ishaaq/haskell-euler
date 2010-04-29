@@ -1,5 +1,5 @@
 module Utils
-(csvToWords, strToDigits, sumDigits, toDigits, toNumber, maxWithIndex, charNum) where
+(csvToWords, strToDigits, sumDigits, toDigits, toNumber, maxWithIndex, charNum, isPalindrome) where
 
 import Data.Char
 import Data.List
@@ -26,3 +26,5 @@ maxWithIndex xs = maximumBy (comparing fst) $ zip xs [1..]
 charNum =  (flip (-) (ord 'A' - 1)) . (ord)
 
 csvToWords = words . (filter (not.isPunctuation)) . map (\x -> if x == ',' then ' ' else x)
+
+isPalindrome xs = xs == (reverse xs)

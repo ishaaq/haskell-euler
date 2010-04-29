@@ -9,8 +9,6 @@ toBinDigits x = showIntAtBase 2 (bin) x ""
     where bin 0 = '0'
           bin 1 = '1'
 
-isPalindrome xs = reverse xs == xs
-
 isBinPalindrome = isPalindrome . toBinDigits
 
 isDecPalindrome = isPalindrome . toDigits 
