@@ -27,7 +27,7 @@ primesToN n = 2: [i | i<-[3,5..n], ar!i]
             a'= a//[(i,False)|i<-[q,q+2*p..n]]
             x = [i | i<-[p+2,p+4..n], a' !i]
 
-facts = 0:1:(zipWith (*) (tail facts) [2..])
+facts = 1:1:(zipWith (*) (tail facts) [2..])
 factorial = (facts !!)
 
 primeFactors :: (Integral a) => a -> [a]
