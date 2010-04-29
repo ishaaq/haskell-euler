@@ -5,16 +5,12 @@ import Data.Char
 import Data.List
 import Data.Ord
 
-sumDigits n = foldl (\x y -> x + (digitToInt y)) (0) (show n)
+sumDigits = sum.toDigits
 
-strToDigits = map (digitToInt)
+strToDigits = map digitToInt
 
-toDigits n = reverse $ toDigits' n
-
-toDigits' n
-    | d == 0 = [r]
-    | otherwise = r:toDigits' d
-    where (d, r) = n `divMod` 10
+toDigits :: Integral a => a -> [Int]
+toDigits = (map digitToInt).show
 
 toNumber xs = toNumber' 0 xs
 
