@@ -3,7 +3,7 @@ module Maths
  properFactors, numCombinations, combinations,
  numAllCombinations, primitivePythtriplets, sqrti) where
 
-import Array
+import Data.Array
 import Data.List
 
 primes :: (Integral a) => [a]

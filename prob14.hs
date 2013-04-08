@@ -1,4 +1,4 @@
-import System(getArgs)
+import System.Environment(getArgs)
 import qualified Data.Map as M
 import Data.List
 import Timer

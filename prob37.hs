@@ -8,7 +8,7 @@ main = do
 
 truncatables = [p | p <- primes, isTruncatable p]
 
-isTruncatable :: (Integral a) => a -> Bool
+isTruncatable :: (Integral a, Show a) => a -> Bool
 isTruncatable p = (length digits > 1) && (all isPrime truncs)
     where digits = toDigits p
           generate f = map (toNumber) $ filter (/=[]) (f digits)

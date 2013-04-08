@@ -9,7 +9,7 @@ sumDigits = sum.toDigits
 
 strToDigits = map digitToInt
 
-toDigits :: Integral a => a -> [Int]
+toDigits :: (Integral a, Show a) => a -> [Int]
 toDigits = (map digitToInt).show
 
 toNumber xs = toNumber' 0 xs

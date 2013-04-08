@@ -1,4 +1,4 @@
-import List (nub)
+import Data.List (nub)
 import Timer
 import Maths
 import qualified Data.Map as M

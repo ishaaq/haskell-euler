@@ -1,4 +1,4 @@
-import List (group)
+import Data.List (group)
 import Timer
 import Maths
 

@@ -1,4 +1,4 @@
-import System(getArgs)
+import System.Environment(getArgs)
 import Timer
 
 fibs = 0:1:zipWith (+) fibs (tail fibs)
